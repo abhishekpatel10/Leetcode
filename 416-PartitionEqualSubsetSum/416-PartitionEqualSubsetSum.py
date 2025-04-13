@@ -1,4 +1,4 @@
-# Last updated: 4/12/2025, 7:42:21 PM
+# Last updated: 4/13/2025, 2:14:47 PM
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         m = sum(nums)
@@ -6,19 +6,18 @@ class Solution:
             return False
         target = m //2
         n = len(nums) 
-        dp = [[-1 for _ in range(target +1)] for _ in range(n)]
+        dp = [[False for _ in range(target +1)] for _ in range(n)]
+        for i in range(n):
+            dp[i][0] = True
+        if nums[0] <= target:
+            dp[0][nums[0]] = True 
+        for i in range(1,n):
+            for tar in range(1,target+1):
+                notpick = dp[i-1][tar]
+                pick = False
+                if tar >= nums[i]:
+                    pick = dp[i-1][tar- nums[i]]
+                dp[i][tar] = pick or notpick
+        return dp[n-1][target]
 
-        return self.solve(n-1,target,nums,dp)
-    def solve(self,n,target,nums,dp):
-        if n == 0 and target == 0 :
-            return True
-        if n == 0 and target > 0:
-            return nums[0] == target
-        if dp[n][target] != -1:
-            return dp[n][target]
-        notpick = self.solve(n-1,target,nums,dp)
-        pick = False
-        if target >= nums[n]:
-            pick = self.solve(n-1,target- nums[n],nums,dp)
-        dp[n][target] = pick or notpick
-        return dp[n][target]
+        
