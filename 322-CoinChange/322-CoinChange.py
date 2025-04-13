@@ -1,4 +1,4 @@
-# Last updated: 4/13/2025, 5:48:36 PM
+# Last updated: 4/13/2025, 5:51:37 PM
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         dp = [amount + 1] * (amount + 1)
