@@ -1,4 +1,4 @@
-# Last updated: 5/20/2025, 5:56:58 PM
+# Last updated: 5/20/2025, 5:59:00 PM
 class Solution:
     def singleNonDuplicate(self, nums: List[int]) -> int:
         n = len(nums)
@@ -8,8 +8,8 @@ class Solution:
             return nums[0]
         if nums[n - 2] != nums[n - 1]:
             return nums[n-1]
-        l = 0
-        r = n- 1
+        l = 1
+        r = n- 2
         m = 0
         while l <= r:
             m = (r+l) // 2
