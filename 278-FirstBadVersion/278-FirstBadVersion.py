@@ -1,0 +1,17 @@
+# Last updated: 6/8/2025, 11:54:29 AM
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        l = 0
+        r = n
+        
+        while l <r:
+            m = (l + r) // 2
+            if isBadVersion(m):
+                r = m
+            else:
+                l = m + 1
+        return l
+        
