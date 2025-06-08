@@ -1,0 +1,19 @@
+# Last updated: 6/8/2025, 11:54:03 AM
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        m = len(text1)
+        n = len(text2)
+        dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+
+        for i in range(1,m+1):
+            for j in range(1,n+1):
+                if text1[i - 1] == text2[j - 1]:
+                    dp[i][j] = 1 + dp[i-1][j-1]
+                else:
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1])
+        return dp[m][n]
+    def minDistance(self, word1: str, word2: str) -> int:
+        total = self.longestCommonSubsequence(word1,word2)
+        remove1 = len(word1) - total
+        remove2 = len(word2) - total
+        return remove1 + remove2
